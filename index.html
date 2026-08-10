@@ -21,8 +21,8 @@
             <!-- Navigation Links -->
             <div class="nav-links item">
                 <ul class="nav-links-list container">
-                    <li class="nav-link item"><a href="#">Add Task</a></li>
-                    <li class="nav-link item"><a href="#">Task List</a></li>
+                    <li class="nav-link item"><a href="#add-task-section">Add Task</a></li>
+                    <li class="nav-link item"><a href="#task-list-section">Task List</a></li>
                     <li class="nav-link item"><a href="#">Task Done</a></li>
                 </ul>
             </div>
@@ -31,9 +31,10 @@
 
     <!-- Task Timer Features -->
     <main>
-        <section class="add-task-section container">
-            <h2 class="section-title">Add Task</h2>
-            <form class="add-task-form container">
+        <!-- Add Task Section -->
+        <section id="add-task-section" class="add-task-section container">
+            <h2 class="section-title item">Add Task</h2>
+            <form class="add-task-form container item">
                 <!-- Task Name and Duration -->
                 <div class="task-name-duration container">
                     <!-- Task Name -->
@@ -56,6 +57,14 @@
                 <!-- Task Add Sumbit Button -->
                 <button type="submit" class="add-task-btn btn item">Add Task</button>
             </form>
+        </section>
+
+        <!-- Task List Section -->
+        <section id="task-list-section" class="task-list-section container">
+            <h2 class="section-title item">Task List</h2>
+            <ul class="task-list container item">
+                <!-- Task Items will be dynamically added here -->
+            </ul>
         </section>
 
     </main>
