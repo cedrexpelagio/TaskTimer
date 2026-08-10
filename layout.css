@@ -40,18 +40,17 @@ body {
 /* Add Task Section */
 
 .add-task-section {
-    height: 45vh;
+    height: 55vh;
 }
 
 .add-task-section,
 .add-task-form {
     flex-direction: column;
-    gap: 20px;
 }
 
 .add-task-form {
-    gap: 10px;
-    justify-content: space-between;
+    height: 90%;
+    justify-content: space-evenly;
 }
 
 .add-task-form .input-container {
