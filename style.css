@@ -34,20 +34,47 @@ ul {
 
 .nav-link a {
     text-decoration: none;
+    color: black;
 }
 
 section {
-    border: 3px solid var(--primary);
+    border: 2px solid var(--secondary);
     padding: 10px;
     border-radius: 12px;
     box-sizing: border-box;
+}
+
+.logo-text,
+.section-title {
+    color: var(--primary);
+}
+
+.logo-text {
+    font-family: inherit;
 }
 
 button,
 input,
 textarea {
   font-family: inherit;
-  font-size: 80%;
+  font-size: 70%;
   line-height: 1.15;
   margin: 0;
+}
+
+.btn {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Add Task Section */
+.input-container input,
+.input-container textarea {
+    padding: 5px;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
 }
