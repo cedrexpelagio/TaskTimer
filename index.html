@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskTimer</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./layout.css">
     <script src="./script.js" defer></script>
 </head>
 
-<body>
+<body class="container">
     <header>
         <!-- Navigation Bar -->
-        <nav class="nav-bar container">
+        <nav class="nav-bar container item">
             <!-- Logo -->
             <div class="tasktimer-logo container item">
                 <img class="logo-img item" src="" alt="">
@@ -30,29 +31,29 @@
     </header>
 
     <!-- Task Timer Features -->
-    <main>
+    <main class="task-timer-features container">
         <!-- Add Task Section -->
-        <section id="add-task-section" class="add-task-section container">
+        <section id="add-task-section" class="add-task-section container item">
             <h2 class="section-title item">Add Task</h2>
             <form class="add-task-form container item">
                 <!-- Task Name and Duration -->
                 <div class="task-name-duration container">
                     <!-- Task Name -->
-                    <div class="container item">
+                    <div class="container item input-container task-name-container">
                         <label class="item">Task Name</label>
                         <input type="text" class="task-input item" placeholder="Enter task name" required>
                     </div>
                     <!-- Duration -->
-                    <div class="container item">
-                        <label class="item">Duration (minutes)</label>
-                        <input type="number" class="task-duration-input item" placeholder="Enter duration (minutes)"
-                            required>
+                    <div class="container item input-container task-duration-container">
+                        <label class="item">Duration</label>
+                        <input type="number" class="task-duration-input item" placeholder="Enter in minutes" required>
                     </div>
                 </div>
                 <!-- Task Description -->
-                <div class="container item">
+                <div class="container item input-container">
                     <label class="item">Task Description</label>
-                    <input type="text" class="task-desc-input item" placeholder="Enter task description" required>
+                    <textarea class="task-desc-input item" placeholder="Enter task description" rows="3"
+                        required></textarea>
                 </div>
                 <!-- Task Add Sumbit Button -->
                 <button type="submit" class="add-task-btn btn item">Add Task</button>
@@ -60,7 +61,7 @@
         </section>
 
         <!-- Task List Section -->
-        <section id="task-list-section" class="task-list-section container">
+        <section id="task-list-section" class="task-list-section container item">
             <h2 class="section-title item">Task List</h2>
             <ul class="task-list container item">
                 <!-- Task Items will be dynamically added here -->
@@ -68,7 +69,7 @@
         </section>
 
         <!-- Task Done List Section -->
-        <section id="task-done-section" class="task-done-section container">
+        <section id="task-done-section" class="task-done-section container item">
             <h2 class="section-title item">Task Done</h2>
             <ul class="task-done-list container item">
                 <!-- Task Items will be dynamically added here -->
@@ -76,9 +77,11 @@
         </section>
 
     </main>
+
     <footer>
         <p class="footer-text">&copy; Cedrex Pelagio. All rights reserved.</p>
     </footer>
+
 </body>
 
 </html>
