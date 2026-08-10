@@ -73,3 +73,37 @@ body {
 .task-duration-container {
     width: 40%;
 }
+
+/* Task List Section */
+
+.task-list-section,
+.task-list,
+.task-item,
+.task-list-info {
+    flex-direction: column;
+}
+
+.task-list {
+    padding: 20px 0px;
+    gap: 10px;
+}
+
+.task-item .btn {
+    text-align: center;
+    width: 15%;
+    align-self: flex-start;
+}
+
+.task-list-name-duration {
+    align-items: center;
+    gap: 20px;
+}
+
+.task-item {
+    gap: 20px;
+}
+
+.task-list-info {
+    align-items: center;
+    gap: 10px;
+}
