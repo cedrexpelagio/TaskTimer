@@ -37,8 +37,9 @@ ul {
     color: black;
 }
 
-section {
-    border: 2px solid var(--secondary);
+section, 
+.task-item {
+    border: 2px solid var(--tertiary);
     padding: 10px;
     border-radius: 12px;
     box-sizing: border-box;
@@ -49,13 +50,18 @@ section {
     color: var(--primary);
 }
 
+.section-title {
+    border-bottom: 1px solid var(--secondary);
+}
+
 .logo-text {
     font-family: inherit;
 }
 
 button,
 input,
-textarea {
+textarea,
+.btn {
   font-family: inherit;
   font-size: 70%;
   line-height: 1.15;
@@ -77,4 +83,27 @@ textarea {
     padding: 5px;
     border: 1px solid var(--secondary);
     border-radius: 8px;
+}
+
+/* Task List Section */
+
+.task-list-title {
+    font-family: inherit;
+}
+
+.task-list-duration {
+    font-family: var(--font-sans);
+    font-size: 80%;
+    background-color: var(--tertiary);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.task-list-desc {
+    color: var(--secondary);
+    font-size: 90%;
+}
+
+.delete-btn {
+    background-color: var(--secondary);
 }
