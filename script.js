@@ -14,7 +14,7 @@ form.addEventListener('submit', function (event) {
 
     // Build the <li>
     const newTask = document.createElement('li');
-    newTask.classList.add('task-item');
+    newTask.classList.add('task-item', 'container');
 
     // Div for task title and duration
     const taskTitleTime = document.createElement('div');
@@ -27,7 +27,7 @@ form.addEventListener('submit', function (event) {
 
     // Task Duration in a span
     const taskDurationSpan = document.createElement('span');
-    taskDurationSpan.textContent = taskDuration + ' min';
+    taskDurationSpan.textContent = taskDuration + ' mins';
     taskDurationSpan.classList.add('task-list-duration', 'item');
 
     // Assemble the task title and duration
