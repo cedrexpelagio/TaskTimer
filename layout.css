@@ -1,0 +1,76 @@
+body {
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px 0px;
+    gap: 30px;
+}
+
+.container {
+    display: flex;
+    /* border: 2px solid black; */
+}
+
+/* .item {
+    border: 1px solid rgb(62, 62, 62);
+} */
+
+/* Navigation Bar */
+.nav-bar {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links-list {
+    gap: 20px;
+}
+
+.nav-bar, 
+.task-timer-features {
+     width: 80vw;
+}
+
+/* Task Timer Features Section */
+
+.task-timer-features {
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Add Task Section */
+
+.add-task-section {
+    height: 45vh;
+}
+
+.add-task-section,
+.add-task-form {
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-task-form {
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.add-task-form .input-container {
+    flex-direction: column;
+}
+
+.task-name-duration {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.add-task-btn {
+    align-self: flex-start;
+}
+
+.task-name-container {
+    width: 55%;
+}
+
+.task-duration-container {
+    width: 40%;
+}
