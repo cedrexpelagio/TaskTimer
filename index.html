@@ -28,8 +28,36 @@
             </div>
         </nav>
     </header>
+
+    <!-- Task Timer Features -->
     <main>
-      
+        <section class="add-task-section container">
+            <h2 class="section-title">Add Task</h2>
+            <form class="add-task-form container">
+                <!-- Task Name and Duration -->
+                <div class="task-name-duration container">
+                    <!-- Task Name -->
+                    <div class="container item">
+                        <label class="item">Task Name</label>
+                        <input type="text" class="task-input item" placeholder="Enter task name" required>
+                    </div>
+                    <!-- Duration -->
+                    <div class="container item">
+                        <label class="item">Duration (minutes)</label>
+                        <input type="number" class="task-duration-input item" placeholder="Enter duration (minutes)"
+                            required>
+                    </div>
+                </div>
+                <!-- Task Description -->
+                <div class="container item">
+                    <label class="item">Task Description</label>
+                    <input type="text" class="task-desc-input item" placeholder="Enter task description" required>
+                </div>
+                <!-- Task Add Sumbit Button -->
+                <button type="submit" class="add-task-btn btn item">Add Task</button>
+            </form>
+        </section>
+
     </main>
     <footer>
         <p class="footer-text">&copy; Cedrex Pelagio. All rights reserved.</p>
