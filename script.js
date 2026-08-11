@@ -5,6 +5,28 @@ const nameInput = document.querySelector('.task-input');
 const durationInput = document.querySelector('.task-duration-input');
 const descInput = document.querySelector('.task-desc-input');
 
+// Timer Feature
+function displayTime(totalSeconds) {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    document.querySelector('.minutes').textContent = minutes < 10 ? `0${minutes}` : minutes;
+    document.querySelector('.seconds').textContent = seconds < 10 ? `0${seconds}` : seconds;
+}
+
+function minCountDown(minutes) {
+    let totalSeconds = minutes * 60;
+    displayTime(totalSeconds);
+
+    const intervalId = setInterval(() => {
+        totalSeconds--;
+        displayTime(totalSeconds);
+
+        if (totalSeconds === 0) {
+            clearInterval(intervalId);
+        }
+    }, 1000);
+}
+
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -52,6 +74,13 @@ form.addEventListener('submit', function (event) {
     startBtn.textContent = 'Start';
     startBtn.classList.add('start-task-btn', 'btn');
 
+    startBtn.addEventListener('click', function () {
+        let minutes = taskDuration;
+
+        minCountDown(minutes);
+
+    });
+
     // Delete button
     const deleteBtn = document.createElement('span');
     deleteBtn.textContent = 'Delete';
@@ -70,4 +99,6 @@ form.addEventListener('submit', function (event) {
     taskList.appendChild(newTask);
 
     form.reset();
+
 });
+
