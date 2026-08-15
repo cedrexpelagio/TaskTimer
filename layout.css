@@ -107,3 +107,32 @@ body {
     align-items: center;
     gap: 10px;
 }
+
+/* Task Timer */
+
+.timer {
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+}
+
+.title-and-btn {
+    justify-content: space-between;
+}
+
+.timer-container {
+    justify-content: center;
+    gap: 10%;
+}
+
+.pause-btn.btn {
+    align-self: center;
+}
+
+.in-progress-btn {
+    width: none;
+}
+
+.hidden {
+    display: none;
+}
