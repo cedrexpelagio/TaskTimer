@@ -38,7 +38,8 @@ ul {
 }
 
 section, 
-.task-item {
+.task-item,
+.timer {
     border: 2px solid var(--tertiary);
     padding: 10px;
     border-radius: 12px;
@@ -104,6 +105,14 @@ textarea,
     font-size: 90%;
 }
 
-.delete-btn {
+.delete-btn,
+.close-btn {
     background-color: var(--secondary);
+}
+
+/* Task Timer */
+
+.task-duration {
+    font-size: 120%;
+    border: 2px solid var(--primary);
 }
