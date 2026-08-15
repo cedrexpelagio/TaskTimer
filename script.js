@@ -1,5 +1,6 @@
 const form = document.querySelector('.add-task-form');
 const taskList = document.querySelector('.task-list');
+const timer = document.querySelector('.timer');
 // User Input
 const nameInput = document.querySelector('.task-input');
 const durationInput = document.querySelector('.task-duration-input');
@@ -7,13 +8,38 @@ const descInput = document.querySelector('.task-desc-input');
 
 // Timer Feature
 function displayTime(totalSeconds) {
-    const minutes = Math.floor(totalSeconds / 60);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
+
+    document.querySelector('.hours').textContent = hours < 10 ? `0${hours}` : hours;
     document.querySelector('.minutes').textContent = minutes < 10 ? `0${minutes}` : minutes;
     document.querySelector('.seconds').textContent = seconds < 10 ? `0${seconds}` : seconds;
 }
 
-function minCountDown(minutes) {
+function timeFormat (totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    let stringHours = "";
+    let stringMins = "";
+    let stringSec = "";
+
+    stringHours = hours < 10 ? `0${hours}` : String(hours);
+    stringMins = minutes < 10 ? `0${minutes}` : String(minutes);
+   stringSec = seconds < 10 ? `0${seconds}` : String(seconds);
+
+    return timeFormated = stringHours + ":" + stringMins + ":" + stringSec;
+}
+
+function changeBtn (startBtn){
+    startBtn.textContent = "Done";
+    startBtn.classList.remove('in-progress-btn');
+    startBtn.classList.add('done-btn');
+}
+
+function minCountDown(minutes, startBtn) {
     let totalSeconds = minutes * 60;
     displayTime(totalSeconds);
 
@@ -23,6 +49,7 @@ function minCountDown(minutes) {
 
         if (totalSeconds === 0) {
             clearInterval(intervalId);
+            changeBtn(startBtn);      
         }
     }, 1000);
 }
@@ -49,7 +76,7 @@ form.addEventListener('submit', function (event) {
 
     // Task Duration in a span
     const taskDurationSpan = document.createElement('span');
-    taskDurationSpan.textContent = taskDuration + ' mins';
+    taskDurationSpan.textContent = timeFormat(taskDuration * 60);
     taskDurationSpan.classList.add('task-list-duration', 'item');
 
     // Assemble the task title and duration
@@ -70,6 +97,7 @@ form.addEventListener('submit', function (event) {
     taskInfo.appendChild(taskDescPara);
 
     // Start button
+    let taskTimerStart = false;
     const startBtn = document.createElement('span');
     startBtn.textContent = 'Start';
     startBtn.classList.add('start-task-btn', 'btn');
@@ -77,7 +105,15 @@ form.addEventListener('submit', function (event) {
     startBtn.addEventListener('click', function () {
         let minutes = taskDuration;
 
-        minCountDown(minutes);
+        if (!taskTimerStart){
+        timer.classList.remove('hidden');
+        minCountDown(minutes, startBtn);
+        startBtn.textContent = 'In Progress';
+        startBtn.classList.add('in-progress-btn');
+        document.querySelector('.task-title').textContent = taskName;
+        document.querySelector('.task-desc').textContent = taskDesc;
+        taskTimerStart = true;
+        }
 
     });
 
