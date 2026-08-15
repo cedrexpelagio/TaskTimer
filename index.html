@@ -12,11 +12,6 @@
 
 <body class="container">
     <header>
-        
-        <div class="timer">
-            <h2>Task Timer</h2>
-            <span class="minutes">00</span>:<span class="seconds">00</span>
-        </div>
 
         <!-- Navigation Bar -->
         <nav class="nav-bar container item">
@@ -65,6 +60,23 @@
                 <button type="submit" class="add-task-btn btn item">Add Task</button>
             </form>
         </section>
+
+        <div class="timer hidden container">
+            <h2 class="section-title">Task In Progress</h2>
+            <div class="title-and-btn container">
+                <h2 class="task-list-title task-title">Title</h2>
+                <div class="close-btn btn">Close</div>
+            </div>
+            <div class="task-desc-container">
+                <p class="task-lisst-desc task-desc">Task Description</p>
+            </div>
+            <div class="timer-container container">
+                <div class="pause-btn btn">Pause</div>
+                <div class="task-list-duration task-duration">
+                <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>
+                </div>
+            </div>
+        </div>
 
         <!-- Task List Section -->
         <section id="task-list-section" class="task-list-section container item">
