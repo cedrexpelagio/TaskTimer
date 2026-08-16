@@ -76,14 +76,17 @@ body {
 
 /* Task List Section */
 
-.task-list-section,
-.task-list,
+.task-list-section, 
+.task-done-section,
+.task-list, 
+.task-done-list,
 .task-item,
 .task-list-info {
     flex-direction: column;
 }
 
-.task-list {
+.task-list,
+.task-done-list {
     padding: 20px 0px;
     gap: 10px;
 }
@@ -129,8 +132,8 @@ body {
     align-self: center;
 }
 
-.in-progress-btn {
-    width: none;
+.in-progress-btn.btn {
+    width: 25%;
 }
 
 .hidden {
