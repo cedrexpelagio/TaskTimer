@@ -116,3 +116,14 @@ textarea,
     font-size: 120%;
     border: 2px solid var(--primary);
 }
+
+.date {
+    font-family: var(--font-sans);
+    padding: 10px;
+}
+
+.in-progress-btn {
+    background-color: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
