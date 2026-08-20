@@ -1,10 +1,44 @@
 const form = document.querySelector('.add-task-form');
 const taskList = document.querySelector('.task-list');
+const taskDoneList = document.querySelector('.task-done-list');
 const timer = document.querySelector('.timer');
+const now = new Date();
 // User Input
 const nameInput = document.querySelector('.task-input');
 const durationInput = document.querySelector('.task-duration-input');
 const descInput = document.querySelector('.task-desc-input');
+
+let isTaskRunning = false;
+let activeIntervalId = null;
+const allStartBtns = [];
+
+function lockOtherStartButtons(exceptBtn) {
+    allStartBtns.forEach((btn) => {
+        if (btn !== exceptBtn) {
+            btn.classList.add('disabled-btn');
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        }
+    });
+}
+
+function unlockAllStartButtons() {
+    allStartBtns.forEach((btn) => {
+        btn.classList.remove('disabled-btn');
+        btn.style.pointerEvents = '';
+        btn.style.opacity = '';
+    });
+}
+
+function resetActiveTimerState() {
+    isTaskRunning = false;
+    if (activeIntervalId !== null) {
+        clearInterval(activeIntervalId);
+        activeIntervalId = null;
+    }
+    timer.classList.add('hidden');
+    unlockAllStartButtons();
+}
 
 // Timer Feature
 function displayTime(totalSeconds) {
@@ -17,7 +51,7 @@ function displayTime(totalSeconds) {
     document.querySelector('.seconds').textContent = seconds < 10 ? `0${seconds}` : seconds;
 }
 
-function timeFormat (totalSeconds) {
+function timeFormat(totalSeconds) {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
@@ -28,28 +62,29 @@ function timeFormat (totalSeconds) {
 
     stringHours = hours < 10 ? `0${hours}` : String(hours);
     stringMins = minutes < 10 ? `0${minutes}` : String(minutes);
-   stringSec = seconds < 10 ? `0${seconds}` : String(seconds);
+    stringSec = seconds < 10 ? `0${seconds}` : String(seconds);
 
     return timeFormated = stringHours + ":" + stringMins + ":" + stringSec;
 }
 
-function changeBtn (startBtn){
+function changeBtn(startBtn) {
     startBtn.textContent = "Done";
     startBtn.classList.remove('in-progress-btn');
     startBtn.classList.add('done-btn');
 }
 
-function minCountDown(minutes, startBtn) {
+function minCountDown(minutes, doneBtn) {
     let totalSeconds = minutes * 60;
     displayTime(totalSeconds);
 
-    const intervalId = setInterval(() => {
+    activeIntervalId = setInterval(() => {
         totalSeconds--;
         displayTime(totalSeconds);
 
         if (totalSeconds === 0) {
-            clearInterval(intervalId);
-            changeBtn(startBtn);      
+            clearInterval(activeIntervalId);
+            activeIntervalId = null;
+            changeBtn(doneBtn);
         }
     }, 1000);
 }
@@ -60,6 +95,9 @@ form.addEventListener('submit', function (event) {
     const taskName = nameInput.value;
     const taskDuration = durationInput.value;
     const taskDesc = descInput.value;
+    const date = document.createElement('div');
+    date.classList.add('date');
+    date.textContent = now.toLocaleDateString();
 
     // Build the <li>
     const newTask = document.createElement('li');
@@ -97,24 +135,60 @@ form.addEventListener('submit', function (event) {
     taskInfo.appendChild(taskDescPara);
 
     // Start button
-    let taskTimerStart = false;
     const startBtn = document.createElement('span');
     startBtn.textContent = 'Start';
     startBtn.classList.add('start-task-btn', 'btn');
 
-    startBtn.addEventListener('click', function () {
-        let minutes = taskDuration;
-
-        if (!taskTimerStart){
-        timer.classList.remove('hidden');
-        minCountDown(minutes, startBtn);
-        startBtn.textContent = 'In Progress';
-        startBtn.classList.add('in-progress-btn');
-        document.querySelector('.task-title').textContent = taskName;
-        document.querySelector('.task-desc').textContent = taskDesc;
-        taskTimerStart = true;
+    if (isTaskRunning) {
+            startBtn.classList.add('disabled-btn');
+            startBtn.style.pointerEvents = 'none';
+            startBtn.style.opacity = '0.5';
         }
 
+    const doneBtn = document.createElement('span');
+    doneBtn.textContent = 'In Progress';
+    doneBtn.classList.add('in-progress-btn', 'btn');
+
+    allStartBtns.push(startBtn);
+
+    startBtn.addEventListener('click', function () {
+        // Ignore clicks if a task is already running, or this button
+        // has been disabled while another task is active.
+        if (isTaskRunning) return;
+
+        isTaskRunning = true;
+        lockOtherStartButtons(startBtn);
+
+        let minutes = taskDuration;
+
+        timer.classList.remove('hidden');
+
+        startBtn.remove();
+
+        newTask.appendChild(doneBtn);
+        newTask.appendChild(taskInfo);
+        newTask.appendChild(deleteBtn);
+
+        minCountDown(minutes, doneBtn);
+
+        document.querySelector('.task-title').textContent = taskName;
+        document.querySelector('.task-desc').textContent = taskDesc;
+
+    });
+
+    doneBtn.addEventListener('click', function () {
+        if (!doneBtn.classList.contains('done-btn')) return;
+
+        doneBtn.remove();
+
+        newTask.appendChild(date);
+        newTask.appendChild(taskInfo);
+        newTask.appendChild(deleteBtn);
+
+        taskDoneList.appendChild(newTask);
+
+        // Free the timer/Start buttons for the next task
+        resetActiveTimerState();
     });
 
     // Delete button
@@ -123,6 +197,12 @@ form.addEventListener('submit', function (event) {
     deleteBtn.classList.add('delete-btn', 'btn');
 
     deleteBtn.addEventListener('click', function () {
+        // If the task being deleted is the one currently running
+        // (its doneBtn is still showing "In Progress"), free up the
+        // timer so other tasks can be started again.
+        if (doneBtn.classList.contains('in-progress-btn') && newTask.contains(doneBtn)) {
+            resetActiveTimerState();
+        }
         newTask.remove(); // removes this specific <li> from the page
     });
 
@@ -135,6 +215,4 @@ form.addEventListener('submit', function (event) {
     taskList.appendChild(newTask);
 
     form.reset();
-
 });
-
