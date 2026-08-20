@@ -25,9 +25,9 @@ body {
     gap: 20px;
 }
 
-.nav-bar, 
+.nav-bar,
 .task-timer-features {
-     width: 90vw;
+    width: 90vw;
 }
 
 /* Task Timer Features Section */
@@ -76,9 +76,9 @@ body {
 
 /* Task List Section */
 
-.task-list-section, 
+.task-list-section,
 .task-done-section,
-.task-list, 
+.task-list,
 .task-done-list,
 .task-item,
 .task-list-info {
@@ -138,4 +138,30 @@ body {
 
 .hidden {
     display: none;
+}
+
+.page-content {
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Timer Overlay */
+
+.timer {
+    position: fixed;
+    top: 25%;
+    width: 80vw;
+    height: 50vh;
+    z-index: 100;
+    background-color: white;
+}
+
+body.active .page-content {
+    filter: blur(2px);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+body.active {
+    overflow: hidden; /* stops body/page scroll while timer is up */
 }
