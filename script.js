@@ -2,6 +2,7 @@ const form = document.querySelector('.add-task-form');
 const taskList = document.querySelector('.task-list');
 const taskDoneList = document.querySelector('.task-done-list');
 const timer = document.querySelector('.timer');
+const closeBtn = document.querySelector('.close-btn');
 const now = new Date();
 // User Input
 const nameInput = document.querySelector('.task-input');
@@ -11,6 +12,16 @@ const descInput = document.querySelector('.task-desc-input');
 let isTaskRunning = false;
 let activeIntervalId = null;
 const allStartBtns = [];
+
+function showTimer() {
+    timer.classList.remove('hidden');
+    document.body.classList.add('active');
+}
+
+function hideTimer() {
+    timer.classList.add('hidden');
+    document.body.classList.remove('active');
+}
 
 function lockOtherStartButtons(exceptBtn) {
     allStartBtns.forEach((btn) => {
@@ -85,6 +96,7 @@ function minCountDown(minutes, doneBtn) {
             clearInterval(activeIntervalId);
             activeIntervalId = null;
             changeBtn(doneBtn);
+            hideTimer() 
         }
     }, 1000);
 }
@@ -161,7 +173,7 @@ form.addEventListener('submit', function (event) {
 
         let minutes = taskDuration;
 
-        timer.classList.remove('hidden');
+        showTimer();
 
         startBtn.remove();
 
@@ -215,4 +227,8 @@ form.addEventListener('submit', function (event) {
     taskList.appendChild(newTask);
 
     form.reset();
+});
+
+closeBtn.addEventListener('click', function () {
+    hideTimer();
 });
