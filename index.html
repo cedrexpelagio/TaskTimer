@@ -11,90 +11,94 @@
 </head>
 
 <body class="container">
-    <header>
 
-        <!-- Navigation Bar -->
-        <nav class="nav-bar container item">
-            <!-- Logo -->
-            <div class="tasktimer-logo container item">
-                <img class="logo-img item" src="" alt="">
-                <h1 class="logo-text item">TaskTimer</h1>
-            </div>
-            <!-- Navigation Links -->
-            <div class="nav-links item">
-                <ul class="nav-links-list container">
-                    <li class="nav-link item"><a href="#add-task-section">Add Task</a></li>
-                    <li class="nav-link item"><a href="#task-list-section">Task List</a></li>
-                    <li class="nav-link item"><a href="#task-done-section">Task Done</a></li>
+    <div class="page-content container">
+        <header>
+
+            <!-- Navigation Bar -->
+            <nav class="nav-bar container item">
+                <!-- Logo -->
+                <div class="tasktimer-logo container item">
+                    <img class="logo-img item" src="" alt="">
+                    <h1 class="logo-text item">TaskTimer</h1>
+                </div>
+                <!-- Navigation Links -->
+                <div class="nav-links item">
+                    <ul class="nav-links-list container">
+                        <li class="nav-link item"><a href="#add-task-section">Add Task</a></li>
+                        <li class="nav-link item"><a href="#task-list-section">Task List</a></li>
+                        <li class="nav-link item"><a href="#task-done-section">Task Done</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Task Timer Features -->
+        <main class="task-timer-features container">
+            <!-- Add Task Section -->
+            <section id="add-task-section" class="add-task-section container item">
+                <h2 class="section-title item">Add Task</h2>
+                <form class="add-task-form container item">
+                    <!-- Task Name and Duration -->
+                    <div class="task-name-duration container">
+                        <!-- Task Name -->
+                        <div class="container item input-container task-name-container">
+                            <label class="item">Task Name</label>
+                            <input type="text" class="task-input item" placeholder="Enter task name" required>
+                        </div>
+                        <!-- Duration -->
+                        <div class="container item input-container task-duration-container">
+                            <label class="item">Duration</label>
+                            <input type="number" class="task-duration-input item" placeholder="Enter in minutes"
+                                required>
+                        </div>
+                    </div>
+                    <!-- Task Description -->
+                    <div class="container item input-container">
+                        <label class="item">Task Description</label>
+                        <textarea class="task-desc-input item" placeholder="Enter task description" rows="5"
+                            required></textarea>
+                    </div>
+                    <!-- Task Add Sumbit Button -->
+                    <button type="submit" class="add-task-btn btn item">Add Task</button>
+                </form>
+            </section>
+
+            <!-- Task List Section -->
+            <section id="task-list-section" class="task-list-section container item">
+                <h2 class="section-title item">Task List</h2>
+                <ul class="task-list container item">
+                    <!-- Task Items will be dynamically added here -->
                 </ul>
-            </div>
-        </nav>
-    </header>
+            </section>
 
-    <!-- Task Timer Features -->
-    <main class="task-timer-features container">
-        <!-- Add Task Section -->
-        <section id="add-task-section" class="add-task-section container item">
-            <h2 class="section-title item">Add Task</h2>
-            <form class="add-task-form container item">
-                <!-- Task Name and Duration -->
-                <div class="task-name-duration container">
-                    <!-- Task Name -->
-                    <div class="container item input-container task-name-container">
-                        <label class="item">Task Name</label>
-                        <input type="text" class="task-input item" placeholder="Enter task name" required>
-                    </div>
-                    <!-- Duration -->
-                    <div class="container item input-container task-duration-container">
-                        <label class="item">Duration</label>
-                        <input type="number" class="task-duration-input item" placeholder="Enter in minutes" required>
-                    </div>
-                </div>
-                <!-- Task Description -->
-                <div class="container item input-container">
-                    <label class="item">Task Description</label>
-                    <textarea class="task-desc-input item" placeholder="Enter task description" rows="5"
-                        required></textarea>
-                </div>
-                <!-- Task Add Sumbit Button -->
-                <button type="submit" class="add-task-btn btn item">Add Task</button>
-            </form>
-        </section>
+            <!-- Task Done List Section -->
+            <section id="task-done-section" class="task-done-section container item">
+                <h2 class="section-title item">Task Done</h2>
+                <ul class="task-done-list container item">
+                    <!-- Task Items will be dynamically added here -->
+                </ul>
+            </section>
 
-        <div class="timer hidden container">
-            <h2 class="section-title">Task In Progress</h2>
-            <div class="title-and-btn container">
-                <h2 class="task-list-title task-title">Title</h2>
-                <div class="close-btn btn">Close</div>
-            </div>
-            <div class="task-desc-container">
-                <p class="task-list-desc task-desc">Task Description</p>
-            </div>
-            <div class="timer-container container">
-                <div class="pause-btn btn">Pause</div>
-                <div class="task-list-duration task-duration">
+        </main>
+    </div>
+
+    <div class="timer hidden container">
+        <h2 class="section-title">Task In Progress</h2>
+        <div class="title-and-btn container">
+            <h2 class="task-list-title task-title">Title</h2>
+            <div class="close-btn btn">Close</div>
+        </div>
+        <div class="task-desc-container">
+            <p class="task-list-desc task-desc">Task Description</p>
+        </div>
+        <div class="timer-container container">
+            <div class="pause-btn btn">Pause</div>
+            <div class="task-list-duration task-duration">
                 <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>
-                </div>
             </div>
         </div>
-
-        <!-- Task List Section -->
-        <section id="task-list-section" class="task-list-section container item">
-            <h2 class="section-title item">Task List</h2>
-            <ul class="task-list container item">
-                <!-- Task Items will be dynamically added here -->
-            </ul>
-        </section>
-
-        <!-- Task Done List Section -->
-        <section id="task-done-section" class="task-done-section container item">
-            <h2 class="section-title item">Task Done</h2>
-            <ul class="task-done-list container item">
-                <!-- Task Items will be dynamically added here -->
-            </ul>
-        </section>
-
-    </main>
+    </div>
 
     <footer>
         <p class="footer-text">&copy; Cedrex Pelagio. All rights reserved.</p>
