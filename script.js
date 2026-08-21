@@ -7,18 +7,36 @@ const inProgresTitle = document.querySelector('.in-progress-title');
 const inProgress =  document.querySelector('.in-progress-section');
 const openBtn = document.querySelector('.open-btn');
 const pauseBtn = document.querySelector('.pause-btn');
+const taskListEmptyMsg = taskList.querySelector('.empty-task-list');
+const taskDoneListEmptyMsg = taskDoneList.querySelector('.empty-task-list');
 const now = new Date();
 // User Input
 const nameInput = document.querySelector('.task-input');
 const durationInput = document.querySelector('.task-duration-input');
 const descInput = document.querySelector('.task-desc-input');
 
+let numTask = 0;
+let numTaskDone = 0;
 let isTaskRunning = false;
 let isPaused = false;
 let currentDoneBtn = null;
 let remainingSeconds = 0;
 let activeIntervalId = null;
 const allStartBtns = [];
+
+function manipulateEmptyMsg (){
+    if (numTask === 0) {
+        taskListEmptyMsg.classList.remove('hidden');
+    } else {
+        taskListEmptyMsg.classList.add('hidden');
+    }
+
+    if (numTaskDone === 0) {
+        taskDoneListEmptyMsg.classList.remove('hidden');
+    } else {
+        taskDoneListEmptyMsg.classList.add('hidden');
+    }
+}
 
 function showTaskInProgress() {
     inProgress.classList.remove('hidden');
@@ -130,6 +148,9 @@ function minCountDown(minutes, doneBtn) {
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    numTask++;
+    console.log("Task: " + numTask);
+    manipulateEmptyMsg();
     const taskName = nameInput.value;
     const taskDuration = durationInput.value;
     const taskDesc = descInput.value;
@@ -220,12 +241,16 @@ form.addEventListener('submit', function (event) {
         if (!doneBtn.classList.contains('done-btn')) return;
 
         doneBtn.remove();
+        deleteBtn.classList.add('task-done-delete-btn');
 
         newTask.appendChild(date);
         newTask.appendChild(taskInfo);
         newTask.appendChild(deleteBtn);
 
         taskDoneList.appendChild(newTask);
+        numTask--;
+        numTaskDone++;
+        manipulateEmptyMsg();
     });
 
     // Delete button
@@ -242,6 +267,14 @@ form.addEventListener('submit', function (event) {
             hideTaskInProgress();
         }
         newTask.remove(); // removes this specific <li> from the page
+
+        // Update the task counters based on which list the task was in
+        if (deleteBtn.classList.contains('task-done-delete-btn')) {
+            numTaskDone--;
+        } else {
+            numTask--;
+        }
+        manipulateEmptyMsg();
     });
 
     // Assemble everything into the <li>
