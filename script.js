@@ -3,6 +3,9 @@ const taskList = document.querySelector('.task-list');
 const taskDoneList = document.querySelector('.task-done-list');
 const timer = document.querySelector('.timer');
 const closeBtn = document.querySelector('.close-btn');
+const inProgresTitle = document.querySelector('.in-progress-title');
+const inProgress =  document.querySelector('.in-progress-section');
+const openBtn = document.querySelector('.open-btn');
 const now = new Date();
 // User Input
 const nameInput = document.querySelector('.task-input');
@@ -12,6 +15,14 @@ const descInput = document.querySelector('.task-desc-input');
 let isTaskRunning = false;
 let activeIntervalId = null;
 const allStartBtns = [];
+
+function showTaskInProgress() {
+    inProgress.classList.remove('hidden');
+}
+
+function hideTaskInProgress() {
+    inProgress.classList.add('hidden');
+}
 
 function showTimer() {
     timer.classList.remove('hidden');
@@ -96,7 +107,8 @@ function minCountDown(minutes, doneBtn) {
             clearInterval(activeIntervalId);
             activeIntervalId = null;
             changeBtn(doneBtn);
-            hideTimer() 
+            hideTimer();
+            hideTaskInProgress();
         }
     }, 1000);
 }
@@ -186,6 +198,8 @@ form.addEventListener('submit', function (event) {
         document.querySelector('.task-title').textContent = taskName;
         document.querySelector('.task-desc').textContent = taskDesc;
 
+        inProgresTitle.textContent = taskName;
+
     });
 
     doneBtn.addEventListener('click', function () {
@@ -214,6 +228,7 @@ form.addEventListener('submit', function (event) {
         // timer so other tasks can be started again.
         if (doneBtn.classList.contains('in-progress-btn') && newTask.contains(doneBtn)) {
             resetActiveTimerState();
+            hideTaskInProgress();
         }
         newTask.remove(); // removes this specific <li> from the page
     });
@@ -231,4 +246,10 @@ form.addEventListener('submit', function (event) {
 
 closeBtn.addEventListener('click', function () {
     hideTimer();
+    showTaskInProgress();
+});
+
+openBtn.addEventListener('click', function () {
+    showTimer();
+    hideTaskInProgress();
 });
