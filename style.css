@@ -111,6 +111,11 @@ textarea,
     background-color: var(--secondary);
 }
 
+.empty-task-list {
+    align-self: center;
+    color: var(--secondary);
+}
+
 /* Task Timer */
 
 .task-duration {
