@@ -114,6 +114,7 @@ function runTimer (){
             changeBtn(currentDoneBtn);
             hideTimer();
             hideTaskInProgress();
+            resetActiveTimerState();
         }
     }, 1000);
 
@@ -180,7 +181,7 @@ form.addEventListener('submit', function (event) {
             startBtn.classList.add('disabled-btn');
             startBtn.style.pointerEvents = 'none';
             startBtn.style.opacity = '0.5';
-        }
+    }
 
     const doneBtn = document.createElement('span');
     doneBtn.textContent = 'In Progress';
@@ -225,9 +226,6 @@ form.addEventListener('submit', function (event) {
         newTask.appendChild(deleteBtn);
 
         taskDoneList.appendChild(newTask);
-
-        // Free the timer/Start buttons for the next task
-        resetActiveTimerState();
     });
 
     // Delete button
