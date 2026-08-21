@@ -111,6 +111,20 @@ body {
     gap: 10px;
 }
 
+/* Task In Progress Section */
+
+.in-progress-section {
+    flex-direction: column;
+}
+
+.in-progress-section {
+    gap: 20px;
+}
+
+.task-in-progress {
+    justify-content: space-between;
+}
+
 /* Task Timer */
 
 .timer {
