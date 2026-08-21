@@ -43,25 +43,33 @@
                     <div class="task-name-duration container">
                         <!-- Task Name -->
                         <div class="container item input-container task-name-container">
-                            <label class="item">Task Name</label>
-                            <input type="text" class="task-input item" placeholder="Enter task name" required>
+                            <label for="#task-title" class="item">Task Name</label>
+                            <input id="task-title" type="text" class="task-input item" placeholder="Enter task name" required>
                         </div>
                         <!-- Duration -->
                         <div class="container item input-container task-duration-container">
-                            <label class="item">Duration</label>
-                            <input type="number" class="task-duration-input item" placeholder="Enter in minutes"
+                            <label for="#task-duration" class="item">Duration</label>
+                            <input id="task-duration" type="number" class="task-duration-input item" placeholder="Enter in minutes"
                                 required>
                         </div>
                     </div>
                     <!-- Task Description -->
                     <div class="container item input-container">
-                        <label class="item">Task Description</label>
-                        <textarea class="task-desc-input item" placeholder="Enter task description" rows="5"
+                        <label for="#task-desc" class="item">Task Description</label>
+                        <textarea id="task-desc" class="task-desc-input item" placeholder="Enter task description" rows="5"
                             required></textarea>
                     </div>
                     <!-- Task Add Sumbit Button -->
                     <button type="submit" class="add-task-btn btn item">Add Task</button>
                 </form>
+            </section>
+
+            <section class="in-progress-section hidden container">
+                <h2 class="section-title">Task In Progress</h2>
+                <div class="task-in-progress container">
+                    <h3 class="in-progress-title">Title</h3>
+                    <span class="open-btn btn">Open Timer</span>
+                </div>
             </section>
 
             <!-- Task List Section -->
