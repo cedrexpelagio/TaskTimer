@@ -88,7 +88,8 @@ textarea,
 
 /* Task List Section */
 
-.task-list-title {
+.task-list-title,
+.in-progress-title {
     font-family: inherit;
 }
 
