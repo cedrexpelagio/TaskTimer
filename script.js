@@ -63,6 +63,9 @@ function resetActiveTimerState() {
         activeIntervalId = null;
     }
     timer.classList.add('hidden');
+    isPaused = false;
+    currentDoneBtn = null;
+    remainingSeconds = 0;
     unlockAllStartButtons();
 }
 
@@ -252,6 +255,23 @@ form.addEventListener('submit', function (event) {
     taskList.appendChild(newTask);
 
     form.reset();
+});
+
+pauseBtn.addEventListener('click', function () {
+
+    if(!isTaskRunning) return;
+
+    if (!isPaused) {
+        // Pause
+        isPaused = true;
+        pauseBtn.textContent = "Resume";
+        clearInterval(activeIntervalId);
+    } else {
+        // Resume
+        isPaused = false;
+        pauseBtn.textContent = "Pause";
+        runTimer();
+    }
 });
 
 closeBtn.addEventListener('click', function () {
