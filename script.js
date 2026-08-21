@@ -6,6 +6,7 @@ const closeBtn = document.querySelector('.close-btn');
 const inProgresTitle = document.querySelector('.in-progress-title');
 const inProgress =  document.querySelector('.in-progress-section');
 const openBtn = document.querySelector('.open-btn');
+const pauseBtn = document.querySelector('.pause-btn');
 const now = new Date();
 // User Input
 const nameInput = document.querySelector('.task-input');
@@ -13,6 +14,9 @@ const durationInput = document.querySelector('.task-duration-input');
 const descInput = document.querySelector('.task-desc-input');
 
 let isTaskRunning = false;
+let isPaused = false;
+let currentDoneBtn = null;
+let remainingSeconds = 0;
 let activeIntervalId = null;
 const allStartBtns = [];
 
@@ -95,22 +99,28 @@ function changeBtn(startBtn) {
     startBtn.classList.add('done-btn');
 }
 
-function minCountDown(minutes, doneBtn) {
-    let totalSeconds = minutes * 60;
-    displayTime(totalSeconds);
+function runTimer (){
 
-    activeIntervalId = setInterval(() => {
-        totalSeconds--;
-        displayTime(totalSeconds);
+  activeIntervalId = setInterval(() => {
+        remainingSeconds--;
+        displayTime(remainingSeconds);
 
-        if (totalSeconds === 0) {
+        if (remainingSeconds === 0) {
             clearInterval(activeIntervalId);
             activeIntervalId = null;
-            changeBtn(doneBtn);
+            changeBtn(currentDoneBtn);
             hideTimer();
             hideTaskInProgress();
         }
     }, 1000);
+
+}
+
+function minCountDown(minutes, doneBtn) {
+    remainingSeconds = minutes * 60;
+    currentDoneBtn = doneBtn;
+    displayTime(remainingSeconds);
+    runTimer();
 }
 
 form.addEventListener('submit', function (event) {
