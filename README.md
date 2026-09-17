@@ -2,13 +2,16 @@
 
 TaskTimer is a brower based app that allows the user to add and set specific minutes for each task. This also includes task title and description. Task will only be mark done after the finishing the timer. 
 
+## 💻 Demo
+
+![TaskTimer Demo](./assets/TaskTimerDemo.gif) 
+
+[Live Demo](https://cedrexpelagio.github.io/TaskTimer/) ← Click the link to monitor your task
+
 ## 📦 Technologies
 - HTML
 - CSS
 - JavaScript
-
-## 💻 Demo
-[Live Demo](https://cedrexpelagio.github.io/TaskTimer/) ← Click the link to monitor your task
 
 ## 🚀 Features
 1. Add task with title, description and set specific timer in minutes
